@@ -1,11 +1,11 @@
 
-class CobbDouglasPruduction:
+class CobbDouglasProduction:
     def __init__(self,
-                 A,   #productivity parameter
-                 beta #share parameter
+                 beta, #share parameter
+                 A #productivity parameter
                  ):
-        self.A = A 
         self.beta = beta 
+        self.A = A 
 
     def F(self, N, L):
         return self.A * N**self.beta * L**(1-self.beta)

@@ -18,8 +18,9 @@ def create_prod_func_list(J, beta, A, prod_func_class):
     for i in range(J):
         technology = prod_func_class(beta, A[i]) 
         prod_func_list.append({'F': technology.F,
-                            'F_N': technology.F_N,
-                            'F_L': technology.F_L,
-                            'MRTS_NL': technology.MRTS_NL
-                            }) 
+                               'F_N': technology.F_N,
+                               'F_L': technology.F_L,
+                               'MRTS_NL': technology.MRTS_NL,
+                               'N_c': technology.N_c
+                              }) 
     return prod_func_list 

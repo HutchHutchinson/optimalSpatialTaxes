@@ -19,3 +19,6 @@ class CobbDouglasProduction:
     def MRTS_NL(self, N, L):
         return self.F_N(N, L) / self.F_L(N, L) 
     
+    def N_c(self, N, L, L_c):
+        return (N*L_c) / L 
+    

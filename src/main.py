@@ -31,10 +31,17 @@ utility_list = create_utility_list(J, alpha, primitives_dict['xi'], CobbDouglasU
 c_production_list = create_prod_func_list(J, beta, primitives_dict['A_c'], CobbDouglasProduction) 
 h_production_list = create_prod_func_list(J, beta, primitives_dict['A_h'], CobbDouglasProduction) 
 
-j = 0
-p = 1
-N = 1
+se = EquilibriumSolver(utility_list, 
+                       c_production_list, 
+                       h_production_list, 
+                       primitives_dict['L'],
+                       T=np.zeros(J)
+                       ) 
 
-se = EquilibriumSolver(utility_list, c_production_list, h_production_list, primitives_dict['L']) 
+N = np.array([0.25, 0.25, 0.25, 0.25])
+L_c = np.array(primitives_dict['L']) / 2
+
+fixed_point = se.find_prices_fixed_point(N, L_c) 
+print(fixed_point.x) 
 
 print('Victory!')

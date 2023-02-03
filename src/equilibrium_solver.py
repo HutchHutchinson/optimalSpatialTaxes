@@ -9,31 +9,45 @@ class EquilibriumSolver:
                  L,
                  T,
                  tau = 0,
-                 tau_h=0,
+                 tau_h = 0,
                  R=0
                  ):
         self.J = len(utility_list) 
         self.utility_list = utility_list
         self.c_production_list = c_production_list
         self.h_production_list = h_production_list
-        self.L = L
-        self.T = T
+        self.L = np.array(L)
+        self.T = np.array(T) 
         self.tau = tau
         self.tau_h = tau_h
-        self.R = R 
+        self.R = R  
     
-    def conditional_fixed_point_mapping(self, p, L_c, N):
+    def prices_mapping(self, p, N, F_h, w):
         "Create the fixed point mapping in prices, given a guess for L_c."
-        output = np.empty(self.J)
-        land_income = p
-        non_labor_I = land_income + self.R 
-        for j in self.J:
-            h_j = self.utility_list[j]['h']
-            F_jh = self.h_production_list[j]['F']
-            N_jc = self.h_production_list[j]['N_c']
-            I_j = (1-self.tau)*self.c_production_list[j]['F_N'] + non_labor_I 
-            output[j] = N[j]*h_j(p[j], I_j) - F_jh(N_jc(L_c[j]), L_c[j]) 
-        return output
+        excess_housing_demand = np.empty(self.J)
+        q = p * F_h 
+        non_labor_I = q @ self.L + self.R 
+        h = [self.utility_list[x]['h'] for x in range(self.J)]
+        for j in range(self.J):
+            I_j = (1-self.tau)*w[j] - self.T[j] + non_labor_I 
+            excess_housing_demand[j] = N[j]*h[j](p[j] + self.tau_h, I_j) - F_h[j] 
+        return excess_housing_demand 
+
+    def find_prices_fixed_point(self, N, L_c):
+        N_c = np.empty(self.J) 
+        F_h = np.empty(self.J) 
+        w = np.empty(self.J)  
+
+        for x in range(self.J):
+            N_c[x] = self.h_production_list[x]['N_c'](N[x], self.L[x], L_c[x]) 
+            F_h[x] = self.h_production_list[x]['F'](N[x] - N_c[x]
+                                                    , self.L[x] - L_c[x])  
+            w[x] = self.c_production_list[x]['F_N'](N_c[x], L_c[x]) 
+
+        init_p = np.ones(self.J)
+        solution = root(lambda p: self.prices_mapping(p, N, F_h, w), 
+                        init_p, method='hybr') 
+        return solution 
 
     def local_excess_production(self, j, p_j, N_j, N_jc, L_jc):
         F_N_c = self.c_production_list[j]['F_N']
@@ -50,9 +64,3 @@ class EquilibriumSolver:
                          F_L_h(N_j-N_jc, self.L[j]-L_jc) 
                         ]) 
         return MP_c - p_j*MP_h 
-    
-    def find_local_N_L(self, j, p, N):
-        init_x = np.array([0.45, 1.05])  
-        solution = root(lambda x: self.local_excess_production(j, p, N, x), 
-                        init_x, method='hybr', options={'xtol': 1.49012e-12}) 
-        return solution 

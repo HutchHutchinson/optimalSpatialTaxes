@@ -1,0 +1,573 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Full Model
+\end_layout
+
+\begin_layout Subsection
+Primitives
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $J$
+\end_inset
+
+ locations
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{N}=[N_{1},N_{2},...,N_{j}]$
+\end_inset
+
+ denotes the population of workers across cities.
+ Workers are able to live in any location, but can only choose one.
+ There is a measure 
+\begin_inset Formula $1$
+\end_inset
+
+ of workers, so that 
+\begin_inset Formula $\sum_{i=1}^{J}N_{j}=1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Each worker is endowed with a unit of labor that is inelastically supplied
+ in their location of residence.
+ 
+\end_layout
+
+\begin_layout Itemize
+There is a local housing good, 
+\begin_inset Formula $h$
+\end_inset
+
+, that is produced by firms in location 
+\begin_inset Formula $j$
+\end_inset
+
+ and can only be consumed by workers living in location 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+There is a tradeable consumption good, 
+\begin_inset Formula $c$
+\end_inset
+
+, that can be consumed by workers in any location.
+ 
+\end_layout
+
+\begin_layout Itemize
+Each locations has a fixed, exogenous amount of land, 
+\begin_inset Formula $L_{j}$
+\end_inset
+
+, that is used in the production of both the consumption and housing goods.
+ 
+\begin_inset Formula $L_{j}$
+\end_inset
+
+ can only be used for production in location 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+There is a fixed, exogenous amount of capital, 
+\begin_inset Formula $K$
+\end_inset
+
+, that is fully mobile across locations.
+ 
+\end_layout
+
+\begin_layout Itemize
+The production technologies are given by 
+\begin_inset Formula $F^{k}(N_{j}^{k},L_{j}^{k};A_{j}^{k})$
+\end_inset
+
+, where 
+\begin_inset Formula $k\in\left\{ c,h\right\} $
+\end_inset
+
+ and 
+\begin_inset Formula $A$
+\end_inset
+
+ is a productivity parameter.
+ 
+\end_layout
+
+\begin_layout Itemize
+Preferences are given by 
+\begin_inset Formula $u(c_{j},h_{j};\xi_{j})$
+\end_inset
+
+.
+ Where 
+\begin_inset Formula $\xi_{j}$
+\end_inset
+
+ is the consumption amenity value of each location.
+\end_layout
+
+\begin_layout Subsection
+Efficiency
+\end_layout
+
+\begin_layout Itemize
+Pareto Problem
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\max_{\boldsymbol{c},\boldsymbol{h},\boldsymbol{N}^{h},\boldsymbol{L}^{h},\boldsymbol{N}}u(c_{1},h_{1};\xi_{1})
+\]
+
+\end_inset
+
+s.t.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}c_{j}=\sum_{j}F^{cj}(N_{j}-N_{j}^{h},L_{j}-L_{j}^{h};A_{j}^{c})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{j}h_{j}=F^{hj}(N_{j}^{h},L_{j}^{h};A_{j}^{h}),\forall j
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u(c_{j},h_{j};\xi_{j})\geq{u}_{j},\forall j\geq2
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Decentralized Equilibrium
+\end_layout
+
+\begin_layout Standard
+Conditional on location, workers solve the following problem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\max_{c_{j},h_{j}}u(c_{j},h_{j};\xi_{j})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+s.t.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(1+\tau_{c}\right)c_{j}+\left(p_{j}+\tau_{h}\right)h_{j}=I_{j}
+\]
+
+\end_inset
+
+Workers are endowed with equal shares of capital and land in each location.
+ Since there is a measure one of workers, this implies that after-tax income
+ is given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+I_{j}=(1-\tau_{w})w_{j}+\sum_{j}q_{j}L_{j}-T_{j}
+\]
+
+\end_inset
+
+Solving this problem yields indirect utility
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+v(\tau_{c},p_{j}+\tau_{c},I_{j}\left(\tau_{w}\right);\xi_{j})
+\]
+
+\end_inset
+
+Workers can move costlessly between locations and choose the location that
+ yields the highest utility.
+ This implies the usual spatial indifference condition that characterized
+ the spatial equilibrium
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+v(\tau_{c},p_{j}+\tau_{c},I_{j}\left(\tau_{w}\right);\xi_{j})=v(\tau_{c},p_{k}+\tau_{c},I_{k}\left(\tau_{w}\right);\xi_{k}),\forall j,k
+\]
+
+\end_inset
+
+Firms in the consumption good industry solve the following problem
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\max_{N_{j}^{c},L_{j}^{c}}F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})-(1+\tau_{N}^{c})w_{j}N_{j}^{c}-\left(1+\tau_{L}^{c}\right)q_{j}L_{j}^{c}
+\]
+
+\end_inset
+
+which leads to the usual marginal conditions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+F_{N}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=(1+\tau_{N}^{c})w_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+F_{L}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=\left(1+\tau_{L}^{c}\right)q_{j}
+\]
+
+\end_inset
+
+And firms in the housing good industry solve 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\max_{N_{j}^{h},L_{j}^{h}}p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})-(1+\tau_{N}^{h})w_{j}N_{j}^{h}-\left(1+\tau_{L}^{h}\right)q_{j}L_{j}^{h}
+\]
+
+\end_inset
+
+which again leads to the usual marginal conditions 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{j}F_{N}^{h}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=(1+\tau_{N}^{h})w_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{j}F_{L}^{h}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=\left(1+\tau_{L}^{h}\right)q_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Software Architecture
+\end_layout
+
+\begin_layout Itemize
+Primitives
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Utility Functions Class
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $u(c_{j},h_{j};\theta_{j})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $v(c_{j},h_{j};\theta_{j})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $u_{c}(c_{j},h_{j};\theta_{j})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $u_{h}(c_{j},h_{j};\theta_{j})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $MRS_{hc}^{j}=\frac{u_{h}(c_{j},h_{j};\theta_{j})}{u_{c}(c_{j},h_{j};\theta_{j})}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $c(I_{j};\theta_{j})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h(p_{j},I_{j};\theta_{j})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Production Functions Class
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $F^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $F_{N}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $F_{L}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $MRTS_{NL}^{kj}=\frac{F_{N}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})}{F_{L}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $N(w_{j},q_{j};\omega_{j}^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $L(w_{j},q_{j};\omega_{j}^{k})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Draw Parameters and Instantiate Function Classes 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+3 J-dimensional lists of dictionaries.
+ Each dictionary contains instantiated, parameterized functions from above
+ classes.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Excess Demand Class
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Takes housing demand and production functions as arguments and builds a
+ housing excess demand function for every location
+\end_layout
+
+\begin_layout Itemize
+For any vector of populations, 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+, the excess demand function can be used to find market clearing housing
+ prices, 
+\begin_inset Formula $\boldsymbol{p}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+e_{j}=N_{j}h(p_{j},I_{j}(\boldsymbol{q});\theta_{j})-F^{k}(N_{j}^{h},L_{j}^{h},K_{j}^{h};\omega_{j}^{h})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{j}F_{L}^{h}(N_{j}^{h},L_{j}^{h},K_{j}^{h};\omega_{j}^{h})=q_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

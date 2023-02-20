@@ -21,8 +21,39 @@ class EquilibriumSolver:
         self.tau = tau
         self.tau_h = tau_h
         self.R = R  
-    
-    def prices_mapping(self, p, N, F_h, w):
+
+    def fixed_point_solver(self, 
+                           solution_guess, 
+                           excess_function, 
+                           params,
+                           kappa=0.2,
+                           max_iter=1000,
+                           tol=1e-6, 
+                           verbose=True,
+                           print_freq=20):
+        
+        old = solution_guess
+        new = np.empty_like(old)
+        string = "Solver encountered non-positive values - reduce kappa."
+
+        j = 0
+        error = tol + 1
+        while j < max_iter and error > tol:
+            new = old + kappa * excess_function(old, *params) 
+            
+            assert np.min(new) > 0, string
+
+            error = np.max(np.abs(new - old))
+            j += 1
+            old = new 
+            if verbose:
+                if j % print_freq == 0:
+                    print(j, excess_function(old, *params)) 
+            if j == max_iter and error > tol:
+                print("Max iterations reached. Solver exited.") 
+        return new      
+
+    def excess_housing_demand(self, p, N, F_h, w):
         "Create the fixed point mapping in prices, given a guess for L_c."
         excess_housing_demand = np.empty(self.J)
         q = p * F_h 
@@ -33,34 +64,27 @@ class EquilibriumSolver:
             excess_housing_demand[j] = N[j]*h[j](p[j] + self.tau_h, I_j) - F_h[j] 
         return excess_housing_demand 
 
-    def find_prices_fixed_point(self, N, L_c):
+    def excess_wages(self, L_c, N):
         N_c = np.empty(self.J) 
         F_h = np.empty(self.J) 
-        w = np.empty(self.J)  
+        w = np.empty(self.J) 
+        F_N_h = np.empty(self.J) 
 
         for x in range(self.J):
             N_c[x] = self.h_production_list[x]['N_c'](N[x], self.L[x], L_c[x]) 
             F_h[x] = self.h_production_list[x]['F'](N[x] - N_c[x]
                                                     , self.L[x] - L_c[x])  
             w[x] = self.c_production_list[x]['F_N'](N_c[x], L_c[x]) 
+            F_N_h[x] = self.h_production_list[x]['F_N'](N[x] - N_c[x]
+                                                        , self.L[x] - L_c[x]) 
 
-        init_p = np.ones(self.J)
-        solution = root(lambda p: self.prices_mapping(p, N, F_h, w), 
-                        init_p, method='hybr') 
-        return solution 
+        p_guess = np.ones(self.J) 
+        p = self.fixed_point_solver(p_guess, 
+                                    self.excess_housing_demand, 
+                                    [N, F_h, w],
+                                    kappa = 0.3,
+                                    verbose=False)  
 
-    def local_excess_production(self, j, p_j, N_j, N_jc, L_jc):
-        F_N_c = self.c_production_list[j]['F_N']
-        F_L_c = self.c_production_list[j]['F_L']
-        F_N_h = self.h_production_list[j]['F_N']
-        F_L_h = self.h_production_list[j]['F_L'] 
+        return w - p * F_N_h 
 
-        MP_c = np.array([
-                         F_N_c(N_jc, L_jc), 
-                         F_L_c(N_jc, L_jc) 
-                        ]) 
-        MP_h = np.array([
-                         F_N_h(N_j-N_jc, self.L[j]-L_jc), 
-                         F_L_h(N_j-N_jc, self.L[j]-L_jc) 
-                        ]) 
-        return MP_c - p_j*MP_h 
+        def calc_L_c_star(self):

@@ -9,23 +9,36 @@ class CobbDouglasUtility:
         self.v_cons = self.alpha**self.alpha * (1-self.alpha)**(1-self.alpha) 
     
     def u(self, c, h):
-        return self.xi * c**(1-self.alpha) * h**self.alpha
+        "Utility."
+        alpha, xi = self.alpha, self.xi
+        return xi * c**(1-alpha) * h**alpha 
     
     def v(self, p, I):
-        return self.v_cons * self.xi * I * p**(-self.alpha)
+        "Indirect utility."
+        alpha, xi, v_cons = self.alpha, self.xi, self.v_cons
+        return v_cons * xi * I * p**(-alpha) 
     
     def c(self, I):
-        return (1-self.alpha) * I
+        "Consumption good demand function."
+        alpha = self.alpha
+        return (1-alpha) * I
     
     def h(self, p, I):
-        return (self.alpha * I) / p
+        "Housing good demand function."
+        alpha = self.alpha
+        return (alpha * I) / p
     
     def mu_c(self, c, h):
-        return (1-self.alpha) * self.xi * c**(-self.alpha) * h**self.alpha
+        "Marginal utility of consumption."
+        alpha, xi = self.alpha, self.xi
+        return (1-alpha) * xi * c**(-alpha) * h**alpha 
     
     def mu_h(self, c, h):
-        return self.alpha * self.xi * c**(1-self.alpha) * h**(self.alpha-1)
+        "Marginal utility of housing."
+        alpha, xi = self.alpha, self.xi
+        return alpha * xi * c**(1-alpha) * h**(alpha-1) 
     
     def MRS_hc(self, c, h):
+        "Marginal rate of substitution between housing and consumption."
         return self.mu_h(c, h) / self.mu_c(c, h) 
     

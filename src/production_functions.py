@@ -1,22 +1,28 @@
 
 class CobbDouglasProduction:
-    def __init__(self,
-                 beta, #share parameter
-                 A #productivity parameter
+    def __init__(self,                
+                 A, #productivity parameter,
+                 beta #share parameter
                  ):
-        self.beta = beta 
-        self.A = A 
+        self.A, self.beta = A, beta 
 
     def F(self, N, L):
-        return self.A * N**self.beta * L**(1-self.beta)
+        "Output."
+        A, beta = self.A, self.beta
+        return A * N**beta * L**(1-beta) 
 
     def F_N(self, N, L):
-        return self.A * self.beta * N**(self.beta-1) * L**(1-self.beta)
+        "Marginal product of labor."
+        A, beta = self.A, self.beta
+        return A * beta * N**(beta-1) * L**(1-beta) 
     
     def F_L(self, N, L):
-        return self.A * (1-self.beta) * N**self.beta * L**(-self.beta)
+        "Marginal product of land."
+        A, beta = self.A, self.beta
+        return A * (1-self.beta) * N**beta * L**(-beta) 
     
     def MRTS_NL(self, N, L):
+        "Marginal rate of technical substitution between labor and land."
         return self.F_N(N, L) / self.F_L(N, L) 
     
     def N_c(self, N, L, L_c):

@@ -13,10 +13,10 @@ def create_utility_list(J, alpha, xi, utility_class):
                             }) 
     return utility_list 
 
-def create_prod_func_list(J, beta, A, prod_func_class):
+def create_prod_func_list(J, A, beta, prod_func_class):
     prod_func_list = []
     for i in range(J):
-        technology = prod_func_class(beta, A[i]) 
+        technology = prod_func_class(A[i], beta) 
         prod_func_list.append({'F': technology.F,
                                'F_N': technology.F_N,
                                'F_L': technology.F_L,

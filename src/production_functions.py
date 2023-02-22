@@ -1,7 +1,7 @@
 
 class CobbDouglasProduction:
     def __init__(self,                
-                 A, #productivity parameter,
+                 A,   #productivity parameter
                  beta #share parameter
                  ):
         self.A, self.beta = A, beta 

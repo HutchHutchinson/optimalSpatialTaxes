@@ -1,5 +1,4 @@
 import numpy as np
-from scipy.optimize import root
 
 class EquilibriumSolver:
     def __init__(self,
@@ -94,8 +93,8 @@ class EquilibriumSolver:
         F_N_h_list = self.F_N_h_list
         F_L_h_list = self.F_L_h_list
         
-        F_h = np.empty(J) 
         F_N_c = np.empty(J) 
+        F_h = np.empty(J) 
         F_N_h = np.empty(J) 
         F_L_h = np.empty(J) 
 
@@ -117,7 +116,7 @@ class EquilibriumSolver:
                                                                    N, 
                                                                    N_c)        
 
-        p_guess = np.ones(self.J) 
+        p_guess = np.ones(J) 
         p = self.fixed_point_solver(self.excess_housing_demand, 
                                     p_guess, 
                                     [N, F_h, F_N_c, F_L_h],

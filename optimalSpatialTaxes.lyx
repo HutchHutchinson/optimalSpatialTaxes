@@ -299,7 +299,7 @@ Workers are endowed with equal shares of capital and land in each location.
 \begin_layout Standard
 \begin_inset Formula 
 \[
-I_{j}=(1-\tau_{w})w_{j}+\sum_{j}q_{j}L_{j}-T_{j}
+I_{j}=(1-\tau_{w})w_{j}+\sum_{j}q_{j}L_{j}-T_{j}+R
 \]
 
 \end_inset
@@ -324,7 +324,7 @@ Workers can move costlessly between locations and choose the location that
 \begin_layout Standard
 \begin_inset Formula 
 \[
-v(\tau_{c},p_{j}+\tau_{c},I_{j}\left(\tau_{w}\right);\xi_{j})=v(\tau_{c},p_{k}+\tau_{c},I_{k}\left(\tau_{w}\right);\xi_{k}),\forall j,k
+v(\tau_{c},p_{j}+\tau_{h},I_{j}\left(\tau_{w}\right);\xi_{j})=v(\tau_{c},p_{k}+\tau_{h},I_{k}\left(\tau_{w}\right);\xi_{k}),\forall j,k
 \]
 
 \end_inset
@@ -335,7 +335,7 @@ Firms in the consumption good industry solve the following problem
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\max_{N_{j}^{c},L_{j}^{c}}F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})-(1+\tau_{N}^{c})w_{j}N_{j}^{c}-\left(1+\tau_{L}^{c}\right)q_{j}L_{j}^{c}
+\max_{N_{j}^{c},L_{j}^{c}}F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})-w_{j}N_{j}^{c}-qL_{j}^{c}
 \]
 
 \end_inset
@@ -346,7 +346,7 @@ which leads to the usual marginal conditions
 \begin_layout Standard
 \begin_inset Formula 
 \[
-F_{N}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=(1+\tau_{N}^{c})w_{j}
+F_{N}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=w_{j}
 \]
 
 \end_inset
@@ -357,7 +357,7 @@ F_{N}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=(1+\tau_{N}^{c})w_{j}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-F_{L}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=\left(1+\tau_{L}^{c}\right)q_{j}
+F_{L}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=q_{j}
 \]
 
 \end_inset
@@ -368,7 +368,7 @@ And firms in the housing good industry solve
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\max_{N_{j}^{h},L_{j}^{h}}p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})-(1+\tau_{N}^{h})w_{j}N_{j}^{h}-\left(1+\tau_{L}^{h}\right)q_{j}L_{j}^{h}
+\max_{N_{j}^{h},L_{j}^{h}}p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})-w_{j}N_{j}^{h}-q_{j}L_{j}^{h}
 \]
 
 \end_inset
@@ -379,7 +379,7 @@ which again leads to the usual marginal conditions
 \begin_layout Standard
 \begin_inset Formula 
 \[
-p_{j}F_{N}^{h}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=(1+\tau_{N}^{h})w_{j}
+p_{j}F_{N}^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})=w_{j}
 \]
 
 \end_inset
@@ -390,12 +390,231 @@ p_{j}F_{N}^{h}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=(1+\tau_{N}^{h})w_{j}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-p_{j}F_{L}^{h}(N_{j}^{c},L_{j}^{c};A_{j}^{c})=\left(1+\tau_{L}^{h}\right)q_{j}
+p_{j}F_{L}^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})=q_{j}
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Government
+\end_layout
+
+\begin_layout Standard
+The government's budget constraint is given by 
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}\left(\tau_{c}c_{j}+\tau_{h}h_{j}+\tau_{w}w_{j}+T_{j}\right)=R
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\tau_{c}$
+\end_inset
+
+, 
+\begin_inset Formula $\tau_{h}$
+\end_inset
+
+, 
+\begin_inset Formula $\tau_{w}$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ are all weakly greater than 0 and 
+\begin_inset Formula $T_{j}$
+\end_inset
+
+ can take on any finite values, representing a place based tax and transfer
+ scheme.
+ 
+\end_layout
+
+\begin_layout Section*
+Solution Algorithm
+\end_layout
+
+\begin_layout Enumerate
+Start with a guess for the vector of populations, 
+\begin_inset Formula $\boldsymbol{N}^{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Next, I need guesses 
+\begin_inset Formula $\boldsymbol{N}^{c0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{L}^{c0}$
+\end_inset
+
+, noting that these quantities pin down 
+\begin_inset Formula $\boldsymbol{N}^{h0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{L}^{h0}$
+\end_inset
+
+, given 
+\begin_inset Formula $\boldsymbol{N}^{0}$
+\end_inset
+
+.
+ Further, note that the marginal conditions in the consumption good industry
+ imply that 
+\begin_inset Formula 
+\[
+\frac{F_{N}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})}{F_{L}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})}=\frac{w_{j}}{q_{j}}=\frac{F_{N}^{h}(N_{j}-N_{j}^{c},L_{j}-L_{j}^{c};A_{j}^{h})}{F_{L}^{h}(N_{j}-N_{j}^{c},L-L_{j}^{c};A_{j}^{h})}
+\]
+
+\end_inset
+
+ which means I only need to guess a value for 
+\begin_inset Formula $\boldsymbol{L}^{c0}$
+\end_inset
+
+, with 
+\begin_inset Formula $\boldsymbol{N}^{c0}$
+\end_inset
+
+ determined by the equation above.
+\end_layout
+
+\begin_layout Enumerate
+Given the within-city allocations of labor and land across industries, I
+ can calculate calculate housing supply in each city as 
+\begin_inset Formula $F^{h}(N_{j}^{h0},L_{j}^{h0};A_{j}^{h})$
+\end_inset
+
+.
+ The next step is to calculate the vector of market clearing housing prices,
+ 
+\begin_inset Formula $\boldsymbol{p}^{0}$
+\end_inset
+
+.
+ Before doing that, first note that imposing market clearing in all the
+ housing markets ensures market clearing in the consumption goods market.
+ To see this, start by adding up the budget constraints on the workers in
+ each labor market 
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}\left(\left(1+\tau_{c}\right)c_{j}+\left(p_{j}+\tau_{h}\right)h_{j}\right)=\sum_{j}N_{j}\left((1-\tau_{w})w_{j}+\sum_{j}q_{j}L_{j}-T_{j}+R\right)
+\]
+
+\end_inset
+
+ Market clearing in each housing market requires 
+\begin_inset Formula $N_{j}h_{j}=F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})$
+\end_inset
+
+.
+ Noting that 
+\begin_inset Formula $q_{j}L_{j}=p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})$
+\end_inset
+
+ due to constant returns to scale, we can rewrite this equation as 
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}\left(\left(1+\tau_{c}\right)c_{j}+\tau_{h}h_{j}\right)=\sum_{j}N_{j}\left((1-\tau_{w})w_{j}-T_{j}+R\right)
+\]
+
+\end_inset
+
+and using the government's budget constraint to simplify we obtain
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}c_{j}=\sum_{j}N_{j}w_{j}=\sum_{j}F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})
+\]
+
+\end_inset
+
+i.e.
+ the goods market clears and we can ignore it for the sake of calculating
+ the equilibrium.
+ Now we we need to calculate 
+\begin_inset Formula $\boldsymbol{p}^{0}$
+\end_inset
+
+, which we can do using the following contraction mapping.
+ First, define the 
+\begin_inset Formula $j$
+\end_inset
+
+th element of the excess housing demand vector as 
+\begin_inset Formula 
+\[
+EHD_{j}\left(\boldsymbol{p}\right)=N_{j}h_{j}\left(p_{j},I_{j}(p)\right)-F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})
+\]
+
+\end_inset
+
+and iterate on 
+\begin_inset Formula $\boldsymbol{p}$
+\end_inset
+
+ using
+\begin_inset Formula 
+\[
+\boldsymbol{p}^{0,k+1}=\boldsymbol{p}^{0,k}+\kappa EHD\left(\boldsymbol{p}^{0,k}\right)
+\]
+
+\end_inset
+
+until convergence.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Next we need to check if the allocations of labor and land across industries
+ with each location are consistent with firms profit maximizing.
+ Define the 
+\begin_inset Formula $j$
+\end_inset
+
+th element of the excess wage vector as 
+\begin_inset Formula 
+\[
+EW_{j}(p_{j},L_{j}^{c})=F_{N}^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})-p_{j}F_{N}^{h}(N_{j}-N_{j}^{c},L_{j}-L_{j}^{c};A_{j}^{h})
+\]
+
+\end_inset
+
+Then we can iterate on 
+\begin_inset Formula $\boldsymbol{L}^{c}$
+\end_inset
+
+ using 
+\begin_inset Formula 
+\[
+\boldsymbol{L}_{k+1}^{c}=\boldsymbol{L}_{k}^{c}+\kappa EW(\boldsymbol{p}^{k}(\boldsymbol{L}_{k}^{c}),\boldsymbol{L}_{k}^{c})
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{p}^{k}$
+\end_inset
+
+ is solved using the algorithm in (3) for each 
+\begin_inset Formula $k$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section*

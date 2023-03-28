@@ -1,8 +1,8 @@
 
-def create_utility_list(J, alpha, xi, utility_class):
+def create_utility_list(J, alpha, xi, tau_c, tau_h, utility_class):
     utility_list = []
     for i in range(J):
-        preferences = utility_class(alpha, xi[i])
+        preferences = utility_class(alpha, xi[i], tau_c, tau_h)
         utility_list.append({'u': preferences.u,
                             'v': preferences.v,
                             'c': preferences.c,

@@ -1,10 +1,13 @@
 
 class CobbDouglasUtility:
     def __init__(self, 
-                 alpha, #budget share of housing
-                 xi):   #amenity vaulues of the location
+                 alpha,  #budget share of housing
+                 xi,     #amenity vaulues of the location
+                 tau_c,  #consumption good tax
+                 tau_h): #housing good tax   
         self.alpha = alpha
         self.xi = xi 
+        self.tau_c, self.tau_h = tau_c, tau_h
         
         self.v_cons = self.alpha**self.alpha * (1-self.alpha)**(1-self.alpha) 
     
@@ -20,13 +23,17 @@ class CobbDouglasUtility:
     
     def c(self, I):
         "Consumption good demand function."
-        alpha = self.alpha
-        return (1-alpha) * I
+        alpha, tau_c = self.alpha, self.tau_c
+        num = (1-alpha) * I 
+        denom = 1 + tau_c
+        return num / denom 
     
     def h(self, p, I):
         "Housing good demand function."
-        alpha = self.alpha
-        return (alpha * I) / p
+        alpha, tau_h = self.alpha, self.tau_h
+        num = (alpha * I) 
+        denom = p + tau_h
+        return num / denom 
     
     def mu_c(self, c, h):
         "Marginal utility of consumption."

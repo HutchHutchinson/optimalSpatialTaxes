@@ -7,42 +7,36 @@ class EquilibriumSolver:
                  h_production_list,
                  L,
                  T=None,
-                 tau=0,
-                 tau_h=0,
                  R=0
                  ):
         self.J = len(utility_list) 
         self.L = np.array(L) 
-        self.tau = tau
-        self.tau_h = tau_h
         self.R = R  
         if T is None:
             self.T = np.zeros(T)
         else:
             self.T = np.array(T)   
 
+        # Assignment for improved readability.
+        self.c_list = [utility_list[x]['c'] for x in range(self.J)] 
         self.h_list = [utility_list[x]['h'] for x in range(self.J)] 
-        self.N_c_list  = [h_production_list[x]['N_c'] for x in range(self.J)]
-        self.F_h_list  = [h_production_list[x]['F'] for x in range(self.J)]
+        self.v_list = [utility_list[x]['v'] for x in range(self.J)] 
+
+        self.F_c_list  = [c_production_list[x]['F'] for x in range(self.J)] 
         self.F_N_c_list  = [c_production_list[x]['F_N'] for x in range(self.J)] 
+        self.F_L_c_list  = [c_production_list[x]['F_L'] for x in range(self.J)] 
+
+        self.N_c_list  = [h_production_list[x]['N_c'] for x in range(self.J)]
+
+        self.F_h_list  = [h_production_list[x]['F'] for x in range(self.J)]
         self.F_N_h_list  = [h_production_list[x]['F_N'] for x in range(self.J)]
         self.F_L_h_list  = [h_production_list[x]['F_L'] for x in range(self.J)] 
-
-    def calc_step_size(self,
-                       excess_function,
-                       solution_guess,
-                       params,
-                       max_first_step_size=0.01
-                       ):
-        excess_val = excess_function(solution_guess, *params) 
-        kappa_vec = (max_first_step_size * solution_guess) / excess_val
-        abs_kappa_vec = np.abs(kappa_vec)
-        return np.min(abs_kappa_vec)  
     
     def fixed_point_solver(self, 
                            excess_function,
                            solution_guess,
                            params,
+                           kappa = 0.05,
                            max_iter=10000,
                            tol=1e-6, 
                            verbose=True,
@@ -52,12 +46,13 @@ class EquilibriumSolver:
         new = np.empty_like(old)
         warning = "Solver encountered non-positive values."
 
-        kappa = self.calc_step_size(excess_function, solution_guess, params) 
-
         j = 0
         error = tol + 1
         while j < max_iter and error > tol:
-            new = old + kappa * excess_function(old, *params) 
+            if params:
+                new = old + kappa * excess_function(old, *params) 
+            else:
+                new = old + kappa * excess_function(old) 
             assert np.min(new) > 0, warning
             error = np.max(np.abs(new - old))
             j += 1
@@ -69,57 +64,207 @@ class EquilibriumSolver:
                 print("Max iterations reached. Solver exited.") 
         return new      
 
-    def excess_housing_demand(self, p, N, F_h, F_N_c, F_L_h):
-        J = self.J
-        h = self.h_list 
-        L = self.L
-        R = self.R
-        T = self.T 
-        tau = self.tau
-        tau_h = self.tau_h
-
-        excess_housing_demand = np.empty(J) 
+    def calc_income(self, p, F_L_h, F_N_c):
+        L, R, T = self.L, self.R, self.T
+        I = np.empty(self.J) 
+        
         q = p * F_L_h 
         location_independent_I = q @ L + R 
+        for j in range(self.J):
+            I[j] = F_N_c[j] - T[j] + location_independent_I        
+        return I 
+
+    def excess_housing_demand(self, p, N, F_h, F_N_c, F_L_h):
+        # Assignment for improved readability.
+        h = self.h_list
+
+        excess_housing_demand = np.empty(self.J) 
+        I = self.calc_income(p, F_L_h, F_N_c)
         for j,x in enumerate(h):
-            I_j = (1-tau)*F_N_c[j] - T[j] + location_independent_I 
-            excess_housing_demand[j] = N[j]*x(p[j] + tau_h, I_j) - F_h[j] 
+            excess_housing_demand[j] = N[j]*x(p[j], I[j]) - F_h[j] 
         return excess_housing_demand 
 
-    def calc_L_c_dependent_objects(self, L_c, N, N_c):
-        J, L = self.J, self.L
-        F_h_list = self.F_h_list
-        F_N_c_list = self.F_N_c_list
-        F_N_h_list = self.F_N_h_list
-        F_L_h_list = self.F_L_h_list
-        
-        F_N_c = np.empty(J) 
-        F_h = np.empty(J) 
-        F_N_h = np.empty(J) 
-        F_L_h = np.empty(J) 
+    def calc_N_c(self, L_c, N):
+        N_c = np.empty(self.J)
+        for j,x in enumerate(self.N_c_list):
+            N_c[j] = x(N[j], self.L[j], L_c[j]) 
+        return N_c 
 
+    def calc_prod_func_objects(self, 
+                               L_c, 
+                               N, 
+                               N_c,
+                               pf_object_list, 
+                               consumption=True
+                               ):
+        L = self.L 
+        pf_object = np.empty(self.J) 
+        
         for x in range(self.J):
-            F_N_c[x] = F_N_c_list[x](N_c[x], L_c[x]) 
-            F_h[x] = F_h_list[x](N[x] - N_c[x], L[x] - L_c[x])   
-            F_N_h[x] = F_N_h_list[x](N[x] - N_c[x], L[x] - L_c[x])  
-            F_L_h[x] = F_L_h_list[x](N[x] - N_c[x], L[x] - L_c[x])  
-        
-        return F_N_c, F_h, F_N_h, F_L_h 
+            if consumption:
+                pf_object[x] = pf_object_list[x](N_c[x], L_c[x]) 
+            else:
+                pf_object[x] = pf_object_list[x](N[x] - N_c[x], 
+                                                 L[x] - L_c[x]) 
+        return pf_object
     
-    def excess_wages(self, L_c, N):
-        J, L, N_c_list = self.J, self.L, self.N_c_list
-        N_c = np.empty(J) 
-        for j,x in enumerate(N_c_list):
-            N_c[j] = x(N[j], L[j], L_c[j])  
+    def excess_wages(self, L_c, N):  
+        N_c = self.calc_N_c(L_c, N) 
+        F_N_c = self.calc_prod_func_objects(L_c, N, N_c, self.F_N_c_list) 
+        F_h = self.calc_prod_func_objects(L_c, N, N_c, 
+                                          self.F_h_list, consumption=False) 
+        F_N_h = self.calc_prod_func_objects(L_c, N, N_c, 
+                                          self.F_N_h_list, consumption=False)
+        F_L_h = self.calc_prod_func_objects(L_c, N, N_c, 
+                                          self.F_L_h_list, consumption=False)      
 
-        F_N_c, F_h, F_N_h, F_L_h = self.calc_L_c_dependent_objects(L_c, 
-                                                                   N, 
-                                                                   N_c)        
-
-        p_guess = np.ones(J) 
+        p_guess = np.ones(self.J) 
         p = self.fixed_point_solver(self.excess_housing_demand, 
                                     p_guess, 
                                     [N, F_h, F_N_c, F_L_h],
+                                    kappa = 0.2,
                                     verbose=False)  
+       
+        return  F_N_c - p * F_N_h 
+    
+    def indirect_utility(self, p, I):
+        v = np.empty(self.J) 
+        for j,x in enumerate(self.v_list):
+            v[j] = x(p[j], I[j]) 
+        return v
+    
+    def excess_indirect_utility(self, N):
+        N_0 = 1-N.sum()
+        full_N = np.append(N_0, N) 
+
+        L_c_guess = self.L / 2 
+        L_c = self.fixed_point_solver(self.excess_wages, 
+                                           L_c_guess, 
+                                           [full_N], 
+                                           kappa=0.2,
+                                           verbose=False) 
+
+        N_c = self.calc_N_c(L_c, full_N) 
+        F_N_c = self.calc_prod_func_objects(L_c, full_N, N_c, self.F_N_c_list) 
+        F_h = self.calc_prod_func_objects(L_c, full_N, N_c, 
+                                          self.F_h_list, consumption=False) 
+        F_L_h = self.calc_prod_func_objects(L_c, full_N, N_c, 
+                                          self.F_L_h_list, consumption=False)        
+
+        p_guess = np.ones(self.J) 
+        p = self.fixed_point_solver(self.excess_housing_demand, 
+                                    p_guess, 
+                                    [full_N, F_h, F_N_c, F_L_h],
+                                    kappa=0.2,
+                                    verbose=False) 
         
-        return F_N_c - p * F_N_h 
+        I = self.calc_income(p, F_L_h, F_N_c) 
+        v = self.indirect_utility(p, I)
+
+        return v[1:] - v[0] 
+    
+    def calc_N_star(self):
+        N_guess = 1 / self.J 
+        N_guess_vector = N_guess * np.ones(self.J-1)
+        N_star_sub = self.fixed_point_solver(self.excess_indirect_utility, 
+                                             N_guess_vector, 
+                                             [], 
+                                             kappa=0.05,
+                                             verbose=True) 
+        N_star_0 = 1 - N_star_sub.sum()
+        self.N_star = np.append(N_star_0, N_star_sub) 
+
+    def calc_equilibrium_objects(self):
+        L_c_guess = self.L / 2 
+        self.L_c_star = self.fixed_point_solver(self.excess_wages, 
+                                                L_c_guess, 
+                                                [self.N_star], 
+                                                kappa=0.2,
+                                                verbose=False) 
+        
+        self.N_c_star = self.calc_N_c(self.L_c_star, self.N_star) 
+
+        self.F_c_star = self.calc_prod_func_objects(self.L_c_star, 
+                                                    self.N_star, 
+                                                    self.N_c_star, 
+                                                    self.F_c_list) 
+        
+        self.F_N_c_star = self.calc_prod_func_objects(self.L_c_star, 
+                                                      self.N_star, 
+                                                      self.N_c_star, 
+                                                      self.F_N_c_list) 
+        
+        self.F_L_c_star = self.calc_prod_func_objects(self.L_c_star, 
+                                                      self.N_star, 
+                                                      self.N_c_star, 
+                                                      self.F_L_c_list) 
+        
+        self.F_h_star = self.calc_prod_func_objects(self.L_c_star, 
+                                                    self.N_star, 
+                                                    self.N_c_star, 
+                                                    self.F_h_list,
+                                                    consumption=False) 
+        
+        self.F_N_h_star = self.calc_prod_func_objects(self.L_c_star, 
+                                                      self.N_star, 
+                                                      self.N_c_star, 
+                                                      self.F_N_h_list,
+                                                      consumption=False) 
+        
+        self.F_L_h_star = self.calc_prod_func_objects(self.L_c_star, 
+                                                      self.N_star, 
+                                                      self.N_c_star, 
+                                                      self.F_L_h_list,
+                                                      consumption=False) 
+        
+        p_guess = np.ones(self.J) 
+        self.p_star = self.fixed_point_solver(self.excess_housing_demand, 
+                                              p_guess, 
+                                              [self.N_star, 
+                                               self.F_h_star, 
+                                               self.F_N_c_star, 
+                                               self.F_L_h_star],
+                                              kappa=0.2,
+                                              verbose=False) 
+        
+        self.I_star = self.calc_income(self.p_star, 
+                                       self.F_L_h_star, 
+                                       self.F_N_c_star) 
+        self.v_star = self.indirect_utility(self.p_star, 
+                                            self.I_star) 
+        
+        self.c_star = np.empty(self.J)
+        for j,x in enumerate(self.c_list):
+            self.c_star[j] = x(self.I_star[j]) 
+
+        self.h_star = np.empty(self.J)
+        for j,x in enumerate(self.h_list):
+            self.h_star[j] = x(self.p_star[j], self.I_star[j]) 
+
+        self.q_star = self.p_star * self.F_L_h_star 
+
+    def check_equilibrium_conditions(self, tol=0.005):
+        v_error = np.empty([self.J, self.J]) 
+        for i in range(self.J):
+            for k in range(self.J):
+                v_error[i, k] = np.abs(self.v_star[i] - self.v_star[k]) 
+        if np.min(v_error) < tol:
+            print('Spatial indifference is satisfied.')
+        else:
+            print('Spatial indifference is not satisfied.')  
+
+        total_c_consumption = (self.N_star * self.c_star).sum()
+        total_c_production = self.F_c_star.sum()
+        c_error = np.abs(total_c_consumption - total_c_production)
+        if c_error < tol:
+            print('The consumption good market is cleared.')
+        else:
+            print('The consumption good market is not cleared.') 
+
+        h_consumption = self.N_star * self.h_star
+        h_error = np.min(np.abs(h_consumption - self.F_h_star))
+        if h_error < tol:
+            print('The housing good markets are cleared.')
+        else:
+            print('The housing good markets are not cleared.') 
+        

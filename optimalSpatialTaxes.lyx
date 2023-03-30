@@ -231,7 +231,7 @@ To obtain this characterization, I perform a similar analysis to that presented
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\max_{\boldsymbol{c}\geq0,\boldsymbol{h}\geq0,\boldsymbol{N}^{h}\geq0,\boldsymbol{L}^{h}\geq0,\boldsymbol{N}\geq0}u(c_{1},h_{1};\xi_{1})
+\max_{\boldsymbol{c}\geq0,\boldsymbol{h}\geq0,\boldsymbol{N}^{c}\geq0,\boldsymbol{L}^{c}\geq0,\boldsymbol{N}^{h}\geq0,\boldsymbol{L}^{h}\geq0,\boldsymbol{N}\geq0}u(c_{1},h_{1};\xi_{1})
 \]
 
 \end_inset
@@ -275,7 +275,18 @@ N_{j}h_{j}=F^{hj}(N_{j}^{h},L_{j}^{h};A_{j}^{h}),\forall j
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\sum_{j}\left(N_{j}^{c}+N_{j}^{h}\right)=N_{j}
+\sum_{j}\left(N_{j}^{c}+N_{j}^{h}\right)=N_{j},\forall j
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{j}\left(L_{j}^{c}+L_{j}^{h}\right)\leq\bar{{L}}_{j},\forall j
 \]
 
 \end_inset
@@ -496,29 +507,76 @@ To further simplify the exposition, I restrict attention to the case where
 \end_inset
 
 .
- This suggests that writing workers' marginal rates of substitution in terms
- of just 
-\begin_inset Formula $c_{1}$
-\end_inset
-
- and 
+ It seems intuitive that efficiency would require equalizing workers' marginal
+ rates of substitution between 
 \begin_inset Formula $N_{1}$
 \end_inset
 
- and equating them across locations might be an alternative to the locational
- efficiency condition.
+ and 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ across locations.
 \end_layout
 
 \begin_layout Standard
-Before doing so, it's worth nothing that the distribution of populations
- (i.e.
+Before deriving these MRS, it is worth noting that the distribution of populatio
+ns (i.e.
  
 \begin_inset Formula $N_{1}$
 \end_inset
 
-) affects the rate at which the consumption good can be transferred to and
+) affects the rate at which the tradeable good can be transferred to and
  from workers across locations.
- [Insert graph.]
+ Figure 1 shows the rate at which per capita consumption of the tradeable
+ good in location 2 can be converted into per capita consumption in location
+ 1, i.e.
+ the line 
+\begin_inset Formula $c_{1}=\frac{C-(1-N_{1})c_{2}}{N_{1}}$
+\end_inset
+
+, for different population distributions.
+ As the population in location one increases, you need to take more of the
+ tradeable good from workers in location 2 to increase per capita consumption
+ of the tradeable good the same amount in location 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename per_cap_c.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Endowment of tradeable good, C, set equal to 2.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -603,6 +661,32 @@ Dividing both sides by
 \end_inset
 
  across locations, which has the usual interpretation and is far more intuitive.
+ If 
+\begin_inset Formula $MRS_{N_{1}c_{1}}^{1}>MRS_{N_{1}c_{1}}^{2}$
+\end_inset
+
+, then we could move some workers from location 1 to location 2, compensate
+ the workers in location 2 with consumption from workers in location 1 and
+ make workers in both locations better off.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Constructing the actual trade is a bit more involved than usual because
+ we need to account for the change in the rate at which we can transfer
+ per capita consumption across locations when 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ changes, as described above, and we need to make sure the movers are also
+ at least as well off as before.
+ I show more formally how to do so in the appendix.
+ 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection

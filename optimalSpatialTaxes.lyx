@@ -80,7 +80,7 @@ Introduction
 \end_layout
 
 \begin_layout Section
-Full Model
+Model
 \end_layout
 
 \begin_layout Subsection
@@ -304,7 +304,7 @@ within a location
  
 \begin_inset Formula 
 \[
-MRS_{ch}^{j}=MRT_{ch}^{jN}=MRT_{ch}^{jL},\forall j
+MRS_{ch}^{j}=MRT_{hc}^{jN}=MRT_{hc}^{jL},\forall j
 \]
 
 \end_inset
@@ -505,7 +505,8 @@ To further simplify the exposition, I restrict attention to the case where
 \begin_inset Formula $N_{1}$
 \end_inset
 
- could possibly help in characterizing the efficient allocations.
+ and equating them across locations might be an alternative to the locational
+ efficiency condition.
 \end_layout
 
 \begin_layout Standard
@@ -517,15 +518,7 @@ Before doing so, it's worth nothing that the distribution of populations
 
 ) affects the rate at which the consumption good can be transferred to and
  from workers across locations.
- For example, if we want to transfer some of the consumption good from workers
- in location 1 to location 2 and 
-\begin_inset Formula $N_{1}$
-\end_inset
-
- is large, this implies that we only need to take a small amount of the
- good per worker because we are transferring to a much smaller group in
- location two.
- 
+ [Insert graph.]
 \end_layout
 
 \begin_layout Standard
@@ -560,11 +553,60 @@ u\left(\frac{C-N_{1}c_{1}}{1-N_{1}},\frac{H_{2}}{1-N_{1}}\right)
 
 \end_inset
 
+ which implies that the marginal rates of substitution are given by 
+\begin_inset Formula 
+\[
+MRS_{N_{1}c_{1}}^{1}=\frac{-H_{1}}{N_{1}^{2}}\frac{u_{h}^{1}}{u_{c}^{1}}
+\]
+
+\end_inset
+
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula 
+\[
+MRS_{N_{1}c_{1}}^{2}=\frac{-(C-c_{1})}{(1-N_{1})N_{1}}-\frac{-H_{2}}{(1-N_{1})N_{1}}\frac{u_{h}^{2}}{u_{c}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now substitute the housing market feasibility constraints into the locational
+ efficiency condition and replace 
+\begin_inset Formula $c_{2}-c_{1}$
+\end_inset
+
+ to obtain 
+\begin_inset Formula 
+\[
+MRS_{hc}^{1}\frac{H_{1}}{N_{1}}=\frac{C-c_{1}}{1-N_{1}}+MRS_{hs}^{2}\frac{H_{2}}{1-N_{1}}
+\]
+
+\end_inset
+
+Dividing both sides by 
+\begin_inset Formula $-N_{1}$
+\end_inset
+
+ shows that locational efficiency in this economy is equivalent to equating
+ the marginal rates of substitution between 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ across locations, which has the usual interpretation and is far more intuitive.
+\end_layout
+
 \begin_layout Subsection
-Decentralized Equilibrium
+Decentralized Equilibrium 
 \end_layout
 
 \begin_layout Standard

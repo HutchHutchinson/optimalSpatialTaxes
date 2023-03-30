@@ -369,7 +369,8 @@ F_{N}^{cj}-c_{j}-MRS_{hc}^{j}h_{j}=F_{N}^{ck}-c_{k}-MRS_{hc}^{k}h_{k},\forall j,
 
 \end_inset
 
-This is very similar to the condition originally derived in Wildasin (1980).
+This is very similar to the condition originally derived in Wildasin (1980)
+ and the one in Albouy (2012).
  I adopt his convention and refer to this as 
 \begin_inset Quotes eld
 \end_inset
@@ -689,12 +690,74 @@ Constructing the actual trade is a bit more involved than usual because
 
 \end_layout
 
+\begin_layout Subsubsection
+Tradeable production, non-tradeable endowment example
+\end_layout
+
+\begin_layout Standard
+Now let's allow for endogenous production of the tradeable good, but maintain
+ exogenous endowments of housing.
+ Ignoring corner solutions (i.e.
+ 
+\begin_inset Formula $N_{1}=0$
+\end_inset
+
+ or 
+\begin_inset Formula $N_{1}=1$
+\end_inset
+
+), this means that all of the labor and land inputs in a location are dedicated
+ to producing the tradeable good.
+ The tradeable good feasibility constraint becomes 
+\begin_inset Formula 
+\[
+N_{1}c_{1}+\left(1-N_{1}\right)c_{2}=F^{c1}(N_{1},\bar{{L}}_{1};A_{1}^{c})+F^{c2}(1-N_{1},\bar{{L}}_{2};A_{2}^{c})
+\]
+
+\end_inset
+
+Notice that we can still write payoffs for workers in both locations entirely
+ in terms of 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+.
+ More specifically, suppressing the land and productivity terms to economize
+ on notation, we have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u\left(c_{1},\frac{H_{1}}{N_{1}};\xi_{1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u\left(\frac{F^{c1}(N_{1})+F^{c2}(1-N_{1})-N_{1}c_{1}}{1-N_{1}},\frac{H_{2}}{1-N_{1}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Decentralized Equilibrium 
 \end_layout
 
 \begin_layout Standard
-Conditional on location, workers solve the following problem:
+Conditional on location, workers solve the following problem: 
 \end_layout
 
 \begin_layout Standard
@@ -881,6 +944,11 @@ where
  can take on any finite value, representing a place-based, lump-sum tax
  and transfer scheme.
  
+\end_layout
+
+\begin_layout Subsection
+Efficient vs.
+ Decentralized Allocations
 \end_layout
 
 \begin_layout Section*

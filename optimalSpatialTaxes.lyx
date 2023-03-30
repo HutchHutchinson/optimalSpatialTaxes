@@ -131,12 +131,12 @@ There are two goods in the model.
 
 .
  Each location has a fixed, exogenous amount of land, 
-\begin_inset Formula $L_{j}$
+\begin_inset Formula $\bar{{L}}_{j}$
 \end_inset
 
 , that is used in the production of both the consumption and housing goods.
  
-\begin_inset Formula $L_{j}$
+\begin_inset Formula $\bar{{L}}_{j}$
 \end_inset
 
  can only be used for production in location 
@@ -148,7 +148,7 @@ There are two goods in the model.
 
 \begin_layout Standard
 Each location is characterized by a four-dimensional tuple, 
-\begin_inset Formula $\left(\xi_{j},A_{j}^{c},A_{j}^{h},L_{j}\right)$
+\begin_inset Formula $\left(\xi_{j},A_{j}^{c},A_{j}^{h},\bar{{L}}_{j}\right)$
 \end_inset
 
 , representing the consumption amenity, productivity in the consumption
@@ -192,10 +192,29 @@ Efficiency
 \begin_layout Standard
 The goal of this section is to obtain a characterization of the Pareto efficient
  allocations in this model.
- The conditions characterizing efficiency within a location are familiar
- - efficiency requires that the marginal rates of substitution for each
- worker are equal to the marginal rates of transformation between labor
- and land in both the consumption and housing good industries.
+ The necessary conditions 
+\shape italic
+within
+\shape default
+ a location are familiar - efficiency requires that the marginal rates of
+ substitution between 
+\begin_inset Formula $c$
+\end_inset
+
+ and 
+\begin_inset Formula $h$
+\end_inset
+
+ for each worker are equal to the marginal rates of transformation between
+ 
+\begin_inset Formula $h$
+\end_inset
+
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+ for both the labor and land inputs.
  The endogenous distribution of workers across locations presents an additional
  complication relative to the standard model and is the focus of this section.
  
@@ -203,7 +222,7 @@ The goal of this section is to obtain a characterization of the Pareto efficient
 
 \begin_layout Standard
 To obtain this characterization, I perform a similar analysis to that presented
- in Wildasin (1980) and Albouy (2012).
+ in Wildasin (1980), Albouy (2012), and Fagjelbaum and Gaubert (2020).
  The following results provide substantial inituition for the optimal tax
  results presented later.
  More specifically, I solve the following Pareto problem
@@ -256,7 +275,7 @@ N_{j}h_{j}=F^{hj}(N_{j}^{h},L_{j}^{h};A_{j}^{h}),\forall j
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\sum_{j}N_{j}^{c}+N_{j}^{h}=N_{j}
+\sum_{j}\left(N_{j}^{c}+N_{j}^{h}\right)=N_{j}
 \]
 
 \end_inset
@@ -276,13 +295,59 @@ u(c_{j},h_{j};\xi_{j})\geq{u}_{j},\forall j\geq2
 \end_layout
 
 \begin_layout Standard
-As mentioned above, all the usual conditions for efficiency go through within
- a location, i.e.
- marginal rates of substitution equal marginal rates of transformation.
- See the appendix for a detailed analysis of the problem.
- In this section, I focus on the additional necessary condition for efficiency,
- which I follow Wildasin and refer to as locational efficiency.
- In particular, the following condition is necessary for efficiency
+As mentioned above, 
+\shape italic
+within a location
+\shape default
+ the usual conditions that marginal rates of substitution are equal to marginal
+ rates of transformation are still necessary, i.e.
+ 
+\begin_inset Formula 
+\[
+MRS_{ch}^{j}=MRT_{ch}^{jN}=MRT_{ch}^{jL},\forall j
+\]
+
+\end_inset
+
+This is unsurprising since, conditional on a location and 
+\begin_inset Formula $N_{j}$
+\end_inset
+
+, the model is just a standard Arrow-Debreu economy.
+ One point worth emphasizing is that the marginal rates of substitution
+ are required to be equal for all 
+\begin_inset Formula $N_{j}$
+\end_inset
+
+ workers in location 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ As long as the allocations satisfy feasibility and the MRS are equal, an
+ arbitrary number of subsets of workers within a location can have different
+ 
+\begin_inset Formula $(c,h)$
+\end_inset
+
+ allocations.
+ The main complication relative to the standard model comes from the endogenous
+ distribution of workers across locations, 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+.
+ This yields the following additional necessary condition.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See the appendix for a detailed analysis of this problem.
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard
@@ -293,13 +358,28 @@ F_{N}^{cj}-c_{j}-MRS_{hc}^{j}h_{j}=F_{N}^{ck}-c_{k}-MRS_{hc}^{k}h_{k},\forall j,
 
 \end_inset
 
+This is very similar to the condition originally derived in Wildasin (1980).
+ I adopt his convention and refer to this as 
+\begin_inset Quotes eld
+\end_inset
 
+locational efficiency
+\begin_inset Quotes erd
+\end_inset
+
+ throughout.
+ The interpretation is not obvious and the next few examples are intended
+ to help understand the economic intuition.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Pure endowment, two location example
 \end_layout
 
 \begin_layout Standard
-In order to help interpret this condition, consider a pure endowment economy
- with only 2 locations where the total amount of the consumption good and
- housing goods available for consumption is 
+Consider a pure endowment economy with only 2 locations where the endowments
+ of the consumption and housing goods are 
 \begin_inset Formula $C$
 \end_inset
 
@@ -312,7 +392,34 @@ In order to help interpret this condition, consider a pure endowment economy
 \end_inset
 
 , respectively.
- The locational efficiency condition then reduces to 
+ The feasibility constraints then become 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{1}c_{1}+\left(1-N_{1}\right)c_{2}=C
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+N_{1}h_{1}=H_{1}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(1-N_{1}\right)h_{2}=H_{2}
+\]
+
+\end_inset
+
+and the locational efficiency condition reduces to 
 \begin_inset Formula 
 \[
 c_{1}+MRS_{hc}^{1}h_{1}=c_{2}+MRS_{hs}^{2}h_{2}
@@ -324,8 +431,8 @@ c_{1}+MRS_{hc}^{1}h_{1}=c_{2}+MRS_{hs}^{2}h_{2}
 \end_layout
 
 \begin_layout Standard
-To simplify the exposition, I restrict attention to the case where workers
- within a location consume the same 
+To further simplify the exposition, I restrict attention to the case where
+ workers within a location consume the same 
 \begin_inset Formula $(c,h)$
 \end_inset
 
@@ -334,11 +441,11 @@ To simplify the exposition, I restrict attention to the case where workers
 \begin_inset Formula $N_{1}$
 \end_inset
 
- entirely determines the distribution of populations (because 
+ entirely determines both the distribution of populations (because 
 \begin_inset Formula $N_{2}=1-N_{1}$
 \end_inset
 
-) and housing consumption for all workers since 
+) and the housing allocations for all workers since 
 \begin_inset Formula $h_{1}=\frac{H_{1}}{N_{1}}$
 \end_inset
 
@@ -360,12 +467,12 @@ To simplify the exposition, I restrict attention to the case where workers
 \end_inset
 
 .
- The social planner trades off 
-\begin_inset Formula $N_{1}$
+ The entire tradeoff is captured in the choice of 
+\begin_inset Formula $c_{1}$
 \end_inset
 
  and 
-\begin_inset Formula $c_{1}$
+\begin_inset Formula $N_{1}$
 \end_inset
 
 , which affect workers' utilities in different directions for workers located
@@ -389,8 +496,27 @@ To simplify the exposition, I restrict attention to the case where workers
 \end_inset
 
 .
- Interestingly, the distribution of populations affects the rate at which
- the consumption good can be transferred to and from workers across locations.
+ This suggests that writing workers' marginal rates of substitution in terms
+ of just 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ could possibly help in characterizing the efficient allocations.
+\end_layout
+
+\begin_layout Standard
+Before doing so, it's worth nothing that the distribution of populations
+ (i.e.
+ 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+) affects the rate at which the consumption good can be transferred to and
+ from workers across locations.
  For example, if we want to transfer some of the consumption good from workers
  in location 1 to location 2 and 
 \begin_inset Formula $N_{1}$
@@ -477,18 +603,27 @@ Workers are endowed with equal shares of land in each location.
 \begin_layout Standard
 \begin_inset Formula 
 \[
-I_{j}=w_{j}+\sum_{j}q_{j}L_{j}-T_{j}+R
+I_{j}=w_{j}+\sum_{j}q_{j}L_{j}-T_{j}
 \]
 
 \end_inset
 
-Solving this problem yields indirect utility
+where 
+\begin_inset Formula $q_{j}$
+\end_inset
+
+ is the price of land and 
+\begin_inset Formula $T_{j}$
+\end_inset
+
+ is a location-specific, lump-sum tax or transfer.
+ Solving this problem yields indirect utility
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-v(\tau_{c},p_{j}+\tau_{c},I_{j}\left(w_{j},\boldsymbol{q};T_{j}\right);\xi_{j})
+v(\tau_{c},p_{j}+\tau_{c},I_{j}\left(w_{j},\boldsymbol{q};T_{j},\boldsymbol{L}\right);\xi_{j})
 \]
 
 \end_inset
@@ -502,7 +637,7 @@ Workers can move costlessly between locations and choose the location that
 \begin_layout Standard
 \begin_inset Formula 
 \[
-v(\tau_{c},p_{j}+\tau_{h},I_{j}\left(w_{j},\boldsymbol{q};T_{j}\right);\xi_{j})=v(\tau_{c},p_{k}+\tau_{h},I_{k}\left(w_{k},\boldsymbol{q};T_{k}\right);\xi_{k}),\forall j,k
+v(\tau_{c},p_{j}+\tau_{h},I_{j}\left(w_{j},\boldsymbol{q};T_{j},\boldsymbol{L}\right);\xi_{j})=v(\tau_{c},p_{k}+\tau_{h},I_{k}\left(w_{k},\boldsymbol{q};T_{k},\boldsymbol{L}\right);\xi_{k}),\forall j,k
 \]
 
 \end_inset
@@ -584,7 +719,7 @@ Government
 The government's budget constraint is given by 
 \begin_inset Formula 
 \[
-\tau_{N}+\tau_{L}+\sum_{j}N_{j}\left(\tau_{c}c_{j}+\tau_{h}h_{j}+T_{j}\right)=R
+\tau_{N}+\sum_{j}L_{j}\tau_{L}+\sum_{j}N_{j}\left(\tau_{c}c_{j}+\tau_{h}h_{j}+T_{j}\right)=R
 \]
 
 \end_inset
@@ -617,7 +752,7 @@ where
 \begin_inset Formula $T_{j}$
 \end_inset
 
- can take on any finite values, representing a place-based, lump-sum tax
+ can take on any finite value, representing a place-based, lump-sum tax
  and transfer scheme.
  
 \end_layout
@@ -695,32 +830,56 @@ Given the within-city allocations of labor and land across industries, I
  each labor market 
 \begin_inset Formula 
 \[
-\sum_{j}N_{j}\left(\left(1+\tau_{c}\right)c_{j}+\left(p_{j}+\tau_{h}\right)h_{j}\right)=\sum_{j}N_{j}\left((1-\tau_{w})w_{j}+\sum_{j}q_{j}L_{j}-T_{j}+R\right)
+\sum_{j}N_{j}\left(\left(1+\tau_{c}\right)c_{j}+\left(p_{j}+\tau_{h}\right)h_{j}\right)=\sum_{j}N_{j}\left(w_{j}+\sum_{j}q_{j}L_{j}-T_{j}\right)
 \]
 
 \end_inset
 
- Market clearing in each housing market requires 
+First, collect the commodity taxes and location-specific transfers on the
+ left hand side as follows 
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}\left(c_{j}+p_{h}h_{j}\right)+\sum_{j}N_{j}\left(\tau_{c}c_{j}+\tau_{h}h_{j}+T_{j}\right)=\sum_{j}N_{j}\left(w_{j}+\sum_{j}q_{j}L_{j}\right)
+\]
+
+\end_inset
+
+Market clearing in each housing market requires 
 \begin_inset Formula $N_{j}h_{j}=F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})$
 \end_inset
 
 .
  Noting that 
-\begin_inset Formula $q_{j}L_{j}=p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})$
+\begin_inset Formula $q_{j}L_{j}=p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})-L_{j}\tau_{L}$
 \end_inset
 
- due to constant returns to scale, we can rewrite this equation as 
+ due to constant returns to scale, we can rewrite this equation as Using
+ the firm's first-order condition and Euler's theorem (since we have assumed
+ constant returns to scale we can replace 
+\begin_inset Formula $q_{j}L_{j}$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{j}$
+\end_inset
+
+ as follows
 \begin_inset Formula 
 \[
-\sum_{j}N_{j}\left(\left(1+\tau_{c}\right)c_{j}+\tau_{h}h_{j}\right)=\sum_{j}N_{j}\left((1-\tau_{w})w_{j}-T_{j}+R\right)
+\sum_{j}N_{j}\left(c_{j}+p_{h}h_{j}\right)+\sum_{j}N_{j}\left(\tau_{c}c_{j}+\tau_{h}h_{j}+T_{j}\right)=\sum_{j}\left(F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})-N_{j}\tau_{N}\right)+\sum_{j}N_{j}\left(\sum_{j}\left(p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})-L_{j}\tau_{L}\right)\right)
 \]
 
 \end_inset
 
-and using the government's budget constraint to simplify we obtain
+Now impose market clearing in the housing markets, i.e.
+ 
+\begin_inset Formula $N_{j}h_{j}=F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})$
+\end_inset
+
+ and obtain 
 \begin_inset Formula 
 \[
-\sum_{j}N_{j}c_{j}=\sum_{j}N_{j}w_{j}=\sum_{j}F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})
+\sum_{j}N_{j}c_{j}+R=\sum_{j}\left(F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})\right)
 \]
 
 \end_inset
@@ -763,7 +922,7 @@ until convergence.
 
 \begin_layout Enumerate
 Next we need to check if the allocations of labor and land across industries
- with each location are consistent with firms profit maximizing.
+ within each location are consistent with firms profit maximizing.
  Define the 
 \begin_inset Formula $j$
 \end_inset
@@ -799,118 +958,5 @@ where
 .
 \end_layout
 
-\begin_layout Section*
-Software Architecture
-\end_layout
-
-\begin_layout Itemize
-Primitives
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Utility Functions Class
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $u(c_{j},h_{j};\theta_{j})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $v(c_{j},h_{j};\theta_{j})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $u_{c}(c_{j},h_{j};\theta_{j})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $u_{h}(c_{j},h_{j};\theta_{j})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $MRS_{hc}^{j}=\frac{u_{h}(c_{j},h_{j};\theta_{j})}{u_{c}(c_{j},h_{j};\theta_{j})}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $c(I_{j};\theta_{j})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $h(p_{j},I_{j};\theta_{j})$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Production Functions Class
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $F^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $F_{N}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $F_{L}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $MRTS_{NL}^{kj}=\frac{F_{N}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})}{F_{L}^{kj}(N_{j}^{k},L_{j}^{k};\omega_{j}^{k})}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $N(w_{j},q_{j};\omega_{j}^{k})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $L(w_{j},q_{j};\omega_{j}^{k})$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\end_deeper
 \end_body
 \end_document

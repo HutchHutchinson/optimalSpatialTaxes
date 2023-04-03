@@ -75,6 +75,37 @@
 
 \begin_body
 
+\begin_layout Title
+Optimal Taxes in a Spatial Equilibrium
+\end_layout
+
+\begin_layout Author
+Kevin Hutchinson
+\end_layout
+
+\begin_layout Date
+4/3/2023
+\end_layout
+
+\begin_layout Abstract
+This paper studies optimal taxes in a canonical Rosen-Roback model of spatial
+ equilibrium when the government has the ability to levy non-linear income
+ taxes, place-based taxes and transers, input taxes and commodity taxes.
+ First, I show that if the government has access to a simple proportional
+ income tax and place-based tax and transfer scheme, then it will never
+ be optimal to use a non-linear income tax, input taxes or commodity taxes.
+ Further, this tax and transfer system implements the first-best allocation
+ because the place-based scheme is flexible enough to completely undo the
+ locational distortions imposed by the income tax.
+ Next, I show that if the government does not have access to a place-based
+ tax and transfer scheme, but is able to levy a non-linear income tax combined
+ with wage or price indexation, then it is still optimal for input and commodity
+ taxes to be zero.
+ Finally, I show that if the government only has access to input and commodity
+ taxes, that it strictly prefers to use input taxes because commodity taxes
+ distort both production and location choices.
+\end_layout
+
 \begin_layout Section
 Introduction
 \end_layout
@@ -371,7 +402,7 @@ F_{N}^{cj}-c_{j}-MRS_{hc}^{j}h_{j}=F_{N}^{ck}-c_{k}-MRS_{hc}^{k}h_{k},\forall j,
 
 This is very similar to the condition originally derived in Wildasin (1980)
  and the one in Albouy (2012).
- I adopt his convention and refer to this as 
+ I adopt Wildasin's convention and refer to this as 
 \begin_inset Quotes eld
 \end_inset
 
@@ -626,7 +657,7 @@ MRS_{N_{1}c_{1}}^{1}=\frac{-H_{1}}{N_{1}^{2}}\frac{u_{h}^{1}}{u_{c}^{1}}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-MRS_{N_{1}c_{1}}^{2}=\frac{-(C-c_{1})}{(1-N_{1})N_{1}}-\frac{-H_{2}}{(1-N_{1})N_{1}}\frac{u_{h}^{2}}{u_{c}^{2}}
+MRS_{N_{1}c_{1}}^{2}=\frac{-(C-c_{1})}{(1-N_{1})N_{1}}-\frac{H_{2}}{(1-N_{1})N_{1}}\frac{u_{h}^{2}}{u_{c}^{2}}
 \]
 
 \end_inset
@@ -744,7 +775,7 @@ u\left(c_{1},\frac{H_{1}}{N_{1}};\xi_{1}\right)
 \begin_layout Standard
 \begin_inset Formula 
 \[
-u\left(\frac{F^{c1}(N_{1})+F^{c2}(1-N_{1})-N_{1}c_{1}}{1-N_{1}},\frac{H_{2}}{1-N_{1}}\right)
+u\left(\frac{F^{c1}(N_{1},\bar{{L}}_{1};A_{1}^{c})+F^{c2}(1-N_{1},\bar{{L}}_{2};A_{2}^{c})-N_{1}c_{1}}{1-N_{1}},\frac{H_{2}}{1-N_{1}}\right)
 \]
 
 \end_inset

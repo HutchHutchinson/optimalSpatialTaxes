@@ -31,6 +31,8 @@ se = EquilibriumSolver(utility_list,
                        c_production_list, 
                        h_production_list, 
                        primitives_dict['L'],
+                       tau_N=0,
+                       tau_L=0,
                        T=np.zeros(J)
                        ) 
 

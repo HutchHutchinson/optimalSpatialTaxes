@@ -20,7 +20,7 @@ class CobbDouglasUtility:
         "Indirect utility."
         alpha, xi, v_cons = self.alpha, self.xi, self.v_cons
         tau_c, tau_h = self.tau_c, self.tau_h
-        return v_cons * xi * I * (1 + tau_c)**(-alpha) * (p + tau_h)**(-alpha) 
+        return v_cons * xi * I * (1 + tau_c)**(alpha-1) * (p + tau_h)**(-alpha) 
     
     def c(self, I):
         "Consumption good demand function."

@@ -53,10 +53,7 @@ class EquilibriumSolver:
         j = 0
         error = tol + 1
         while j < max_iter and error > tol:
-            if params:
-                new = old + kappa * excess_function(old, *params) 
-            else:
-                new = old + kappa * excess_function(old) 
+            new = old + kappa * excess_function(old, *params) 
             assert np.min(new) > 0, warning
             error = np.max(np.abs(new - old))
             j += 1
@@ -67,34 +64,6 @@ class EquilibriumSolver:
             if j == max_iter and error > tol:
                 print("Max iterations reached. Solver exited.") 
         return new      
-    
-    def fixed_point_solver_numba(self, 
-                                excess_function,
-                                solution_guess,
-                                kappa = 0.05,
-                                max_iter=10000,
-                                tol=1e-6, 
-                                verbose=True,
-                                print_freq=10):
-        
-        old = solution_guess
-        new = np.empty_like(old)
-        warning = "Solver encountered non-positive values."
-
-        j = 0
-        error = tol + 1
-        while j < max_iter and error > tol:
-            new = old + kappa * excess_function(old) 
-            assert np.min(new) > 0, warning
-            error = np.max(np.abs(new - old))
-            j += 1
-            old = new 
-            if verbose:
-                if j % print_freq == 0:
-                    print(j, excess_function(old)) 
-            if j == max_iter and error > tol:
-                print("Max iterations reached. Solver exited.") 
-        return new  
 
     def calc_income(self, p, F_L_h, F_N_c):
         L, R, T, tau_N, tau_L = self.L, self.R, self.T, self.tau_N, self.tau_L
@@ -201,7 +170,7 @@ class EquilibriumSolver:
         N_guess_vector = N_guess * np.ones(self.J-1)
         N_star_sub = self.fixed_point_solver(self.excess_indirect_utility, 
                                              N_guess_vector, 
-                                             [], 
+                                             (), 
                                              kappa=0.05,
                                              verbose=True) 
         N_star_0 = 1 - N_star_sub.sum()

@@ -84,26 +84,21 @@ Kevin Hutchinson
 \end_layout
 
 \begin_layout Date
-4/3/2023
+4/14/2023
 \end_layout
 
 \begin_layout Abstract
 This paper studies optimal taxes in a canonical Rosen-Roback model of spatial
- equilibrium when the government has the ability to levy non-linear income
- taxes, place-based taxes and transers, input taxes and commodity taxes.
- First, I show that if the government has access to a simple proportional
- income tax and place-based tax and transfer scheme, then it will never
- be optimal to use a non-linear income tax, input taxes or commodity taxes.
- Further, this tax and transfer system implements the first-best allocation
+ equilibrium when the government has the ability to levy place-based taxes
+ and transers, input taxes and commodity taxes (which subsume a proportional
+ income tax).
+ First, I show that if the government has access to the combination of a
+ proportional income tax and a place-based tax and transfer scheme, then
+ it will never be optimal to use input taxes or non-uniform commodity taxes.
+ Further, this tax and transfer system implements an efficient allocation
  because the place-based scheme is flexible enough to completely undo the
- locational distortions imposed by the income tax.
- Next, I show that if the government does not have access to a place-based
- tax and transfer scheme, but is able to levy a non-linear income tax combined
- with wage or price indexation, then it is still optimal for input and commodity
- taxes to be zero.
- Finally, I show that if the government only has access to input and commodity
- taxes, that it strictly prefers to use input taxes because commodity taxes
- distort both production and location choices.
+ locational distortions imposed by the proportional income tax.
+ 
 \end_layout
 
 \begin_layout Section
@@ -262,7 +257,7 @@ To obtain this characterization, I perform a similar analysis to that presented
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\max_{\boldsymbol{c}\geq0,\boldsymbol{h}\geq0,\boldsymbol{N}^{c}\geq0,\boldsymbol{L}^{c}\geq0,\boldsymbol{N}^{h}\geq0,\boldsymbol{L}^{h}\geq0,\boldsymbol{N}\geq0}u(c_{1},h_{1};\xi_{1})
+\max_{\boldsymbol{c}\geq0,\boldsymbol{h}\geq0,\boldsymbol{L}^{c}\geq0,\boldsymbol{L}^{h}\geq0,\boldsymbol{N}^{c}\geq0,\boldsymbol{N}^{h}\geq0,\boldsymbol{L}\geq0,\boldsymbol{N}\geq0}u(c_{1},h_{1};\xi_{1})
 \]
 
 \end_inset
@@ -306,7 +301,7 @@ N_{j}h_{j}=F^{hj}(N_{j}^{h},L_{j}^{h};A_{j}^{h}),\forall j
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\sum_{j}\left(N_{j}^{c}+N_{j}^{h}\right)=N_{j},\forall j
+N_{j}^{c}+N_{j}^{h}=N_{j},\forall j
 \]
 
 \end_inset
@@ -317,7 +312,18 @@ N_{j}h_{j}=F^{hj}(N_{j}^{h},L_{j}^{h};A_{j}^{h}),\forall j
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\sum_{j}\left(L_{j}^{c}+L_{j}^{h}\right)\leq\bar{{L}}_{j},\forall j
+L_{j}^{c}+L_{j}^{h}=L_{j},\forall j
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{j}\leq\bar{{L}}_{j},\forall j
 \]
 
 \end_inset
@@ -400,8 +406,8 @@ F_{N}^{cj}-c_{j}-MRS_{hc}^{j}h_{j}=F_{N}^{ck}-c_{k}-MRS_{hc}^{k}h_{k},\forall j,
 
 \end_inset
 
-This is very similar to the condition originally derived in Wildasin (1980)
- and the one in Albouy (2012).
+This is very similar to the condition originally derived in Wildasin (1980),
+ as well as the one in Albouy (2012).
  I adopt Wildasin's convention and refer to this as 
 \begin_inset Quotes eld
 \end_inset
@@ -757,8 +763,7 @@ Notice that we can still write payoffs for workers in both locations entirely
 \end_inset
 
 .
- More specifically, suppressing the land and productivity terms to economize
- on notation, we have
+ More specifically, we now have
 \end_layout
 
 \begin_layout Standard
@@ -780,7 +785,44 @@ u\left(\frac{F^{c1}(N_{1},\bar{{L}}_{1};A_{1}^{c})+F^{c2}(1-N_{1},\bar{{L}}_{2};
 
 \end_inset
 
+and
+\end_layout
 
+\begin_layout Standard
+\begin_inset Formula 
+\[
+MRS_{N_{1}c_{1}}^{1}=\frac{-H_{1}}{N_{1}^{2}}\frac{u_{h}^{1}}{u_{c}^{1}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+MRS_{N_{1}c_{1}}^{2}=\frac{-(F_{N}^{c1}-c_{1})}{(1-N_{1})N_{1}}-\frac{H_{2}}{(1-N_{1})N_{1}}\frac{u_{h}^{2}}{u_{c}^{2}}
+\]
+
+\end_inset
+
+where I have made repeated use of the constant returns to scale assumption
+ and Euler's theorem to simplify 
+\begin_inset Formula $MRS_{N_{1}c_{1}}^{2}$
+\end_inset
+
+.
+ Similar algebra once again implies that 
+\begin_inset Formula $MRS_{N_{1}c_{1}}^{1}=MRS_{N_{1}c_{1}}^{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Pareto dominated allocation in the general model example
 \end_layout
 
 \begin_layout Subsection
@@ -983,6 +1025,164 @@ Efficient vs.
 \end_layout
 
 \begin_layout Section*
+Theoretical Appendix
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\max_{\boldsymbol{c}\geq0,\boldsymbol{h}\geq0,\boldsymbol{L}^{h}\geq0,\boldsymbol{N}^{h}\geq0,\boldsymbol{L}\geq0,\boldsymbol{N}\geq0}u(c_{1},h_{1};\xi_{1})
+\]
+
+\end_inset
+
+s.t.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}c_{j}=\sum_{j}F^{cj}(N_{j}-N_{j}^{h},L_{j}-L_{j}^{h};A_{j}^{c})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{j}h_{j}=F^{hj}(N_{j}^{h},L_{j}^{h};A_{j}^{h}),\forall j
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{j}N_{j}=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{j}\leq\bar{{L}}_{j},\forall j
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u(c_{j},h_{j};\xi_{j})\geq{u}_{j},\forall j\geq2
+\]
+
+\end_inset
+
+And the corresponding first-order conditions are given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+c_{1}:u_{c}^{1}-\lambda N_{1}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+h_{1}:u_{h}^{1}-\mu_{1}N_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+c_{j}:\kappa_{j}u_{c}^{j}-\lambda N_{j}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+h_{j}:\kappa_{j}u_{h}^{j}-\mu_{j}N_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{j}^{h}:-\lambda F_{L}^{cj}+\mu_{j}F_{L}^{hj}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{j}^{h}:-\lambda F_{N}^{cj}+\mu_{j}F_{N}^{hj}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{j}:\lambda F_{L}^{cj}-\sigma_{j}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{j}:\lambda\left(F_{N}^{cj}-c_{j}\right)-\mu_{j}h_{j}-\theta=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
 Solution Algorithm
 \end_layout
 
@@ -1088,7 +1288,7 @@ Market clearing in each housing market requires
 \begin_inset Formula $w_{j}$
 \end_inset
 
- as follows
+ as follows)
 \begin_inset Formula 
 \[
 \sum_{j}N_{j}\left(c_{j}+p_{h}h_{j}\right)+\sum_{j}N_{j}\left(\tau_{c}c_{j}+\tau_{h}h_{j}+T_{j}\right)=\sum_{j}\left(F^{c}(N_{j}^{c},L_{j}^{c};A_{j}^{c})-N_{j}\tau_{N}\right)+\sum_{j}N_{j}\left(\sum_{j}\left(p_{j}F^{h}(N_{j}^{h},L_{j}^{h};A_{j}^{h})-L_{j}\tau_{L}\right)\right)
